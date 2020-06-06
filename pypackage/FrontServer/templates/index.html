@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">SQLtoJSON</h1>
+              <p class="lead">Welcome to SQLtoJSON. Click any of the option below.</p>
+              <a class="btn btn-danger btn-md" href="{{ url_for('querytab') }}" role="button">Try Queries</a><br><br>
+              <a class="btn btn-warning btn-md" href="{{ url_for('history') }}" role="button">View History</a>
+            </div>
+          </div>
+    </div>
+</body>
+</html>

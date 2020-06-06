@@ -1,5 +1,7 @@
 import requests
 import json
+import pickle
+from pypackage.FrontServer import server
 
 class AuthErrorException(Exception):
     """ Access Denied for given set of credentials """
@@ -34,7 +36,16 @@ class s2j:
             return None
         history_element['success'] = True
         history_element['response'] = rawres.get("data")
+        self.__history.append(history_element)
+        # update_pickle(self)
         return rawres
+    
+    def get_history(self):
+        return self.__history
 
-def start_lookup_server():
-    pass
+def start_lookup_server(s2jInstance):
+    pick = pickle.dumps(s2jInstance)
+    server.start(pick)
+
+def update_pickle(s2jInstance):
+    server.update_pickle(pickle.dumps(s2jInstance))

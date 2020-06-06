@@ -43,3 +43,6 @@ class s2j:
         history_element['success'] = True
         history_element['response'] = rawres.get("data")
         return rawres
+
+def start_lookup_server():
+    pass

@@ -7,15 +7,13 @@ app = Flask(__name__)
 @app.route('/execQuery')
 def execQuery():
     database = request.args.get('database')
-    response = {}
-    creds = {}
+    host = request.args.get('host')
+    username = request.args.get('username')
+    password = request.args.get('password')
     try:
-        with open('config.json', 'r') as fp:
-            creds = json.load(fp)
-    except:
-        response['status'] = 'error'
-        return jsonify(response)
-    return query.execQuery()
+        return jsonify(query.execQuery(database, host, username, password))
+    except Exception as e:
+        return jsonify({ "status" : "failure", "error" : str(e) })
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(port = 4909, debug = True)

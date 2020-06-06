@@ -11,7 +11,8 @@ def querytab():
 
 @app.route("/history")
 def history():
-    return "ok"
+    # print(s2jObj.get_history())
+    return render_template('history.html', history = s2jObj.get_history())
 
 @app.route("/")
 def index():

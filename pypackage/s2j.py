@@ -29,7 +29,7 @@ class s2j:
         history_element['success'] = False
         history_element['response'] = None
         history_element['error'] = None
-        if rawres.get('status') == "failure":  
+        if rawres.get('status') == "failure" or rawres.get('status') == "error":  
             print(rawres.get("error_message"))
             history_element['error'] = rawres.get("error_message")
             self.__history.append(history_element)

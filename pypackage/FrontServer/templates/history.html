@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <br><br><br>
+        <a href="{{ url_for('index') }}" class="btn btn-outline-primary"> &lt; Back </a>
+        <br><br>
+        <center>
+            <h1>History</h1>
+            <br><br>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Status</th>
+                <th scope="col">Query</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in history %}
+              <tr>
+                  <td>
+                      {% if data.success %}
+                      <button type="button" class="btn btn-success">Success</button>
+                      {% else %}
+                      <button type="button" class="btn btn-danger">Error</button>
+                      {% endif %}
+                  </td>
+                <td>{{ data.query }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </center>
+    </div>
+</body>
+</html>

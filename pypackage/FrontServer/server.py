@@ -1,13 +1,23 @@
 from flask import Flask, render_template
 import pickle
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
 
 app = Flask(__name__)
+app.secret_key = "KKKKEEEEYYY"
 # s2jObj = None
+class queryForm(FlaskForm):
+    Query = StringField()
+    Submit = SubmitField('Run')
 
-
-@app.route('/querytab')
+@app.route('/querytab', methods=["POST", "GET"])
 def querytab():
-    return "OK"
+    form = queryForm()
+    if form.is_submitted():
+        query = form.Query.data
+        resp = s2jObj.execQuery(query)
+        return render_template('try_query.html', form=form, isRes=True, res=resp)
+    return render_template('try_query.html', form=form, isRes=False, res="")
 
 @app.route("/history")
 def history():

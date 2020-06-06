@@ -1,19 +1,22 @@
 from flask import Flask, request, jsonify
 import json
 import requests
-from cruds import query
+from cruds.query import exec_query
 app = Flask(__name__)
 
-@app.route('/execQuery')
+@app.route('/execQuery', methods = ["POST", "GET"])
 def execQuery():
-    database = request.args.get('database')
-    host = request.args.get('host')
-    username = request.args.get('username')
-    password = request.args.get('password')
+    data = request.get_json()
+    database = data.get('database')
+    host = data.get('host')
+    username = data.get('username')
+    password = data.get('password')
+    query = data.get('query')
+    print(database, username, password, host)
     try:
-        return jsonify(query.execQuery(database, host, username, password))
+        return jsonify(exec_query(query, database, host, username, password))
     except Exception as e:
-        return jsonify({ "status" : "failure", "error" : str(e) })
+        return jsonify({ "status" : "failure", "error_message" : str(e) })
 
 if __name__ == "__main__":
     app.run(port = 4909, debug = True)

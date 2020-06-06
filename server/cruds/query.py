@@ -2,10 +2,11 @@ import mysql.connector
 from mysql.connector import Error
 import json
 
-def execQuery(quer, url, port, database, user, password):
+def exec_query(quer, database, host, user, password):
     maindata = {"data": [], "error": ""}
+    connection = None
     try:
-        connection = mysql.connector.connect(host=url,port=port,database=database,user=user,password=password)
+        connection = mysql.connector.connect(host=host,database=database,user=user,password=password, use_pure = False)
 
         if connection.is_connected():
             cursor = connection.cursor()
@@ -35,9 +36,11 @@ def execQuery(quer, url, port, database, user, password):
     except Error as e:
         maindata['error'] = str(e)
         maindata['status'] = "error"
+        print(e)
         
     finally:
-       if connection.is_connected():
-            cursor.close()
-            connection.close()
+       if connection:
+           if connection.is_connected():
+                cursor.close()
+                connection.close()
     return maindata

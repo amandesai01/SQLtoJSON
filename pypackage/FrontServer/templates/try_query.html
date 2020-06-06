@@ -18,11 +18,11 @@
                 {{ form.hidden_tag() }}
                 {{ form.csrf_token }}
                 <div class="form-group">
-                  {% if isRes %}
-                  <pre>
+                  <!-- {% if isRes %} -->
+                  <!-- <pre> -->
                       {{ res }}
-                  </pre>
-                  {% endif %}
+                  <!-- </pre> -->
+                  <!-- {% endif %} -->
                   {{ form.Query(class="form-control form-control-lg", placeholder="Query") }}
                   <!-- <input class="form-control form-control-lg" type="text" placeholder="Query"> -->
                   {{ form.Submit(class="btn btn-dark") }}

@@ -52,7 +52,7 @@ class s2j:
         history_element['success'] = True
         history_element['response'] = rawres.get("data")
         self.__history.append(history_element)
-        # update_pickle(self)
+        update_pickle(self)
         return rawres
     
     def checkConnection(self):

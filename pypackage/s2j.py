@@ -20,6 +20,21 @@ class s2j:
         # self.__authenticate(host, username, password, database)
         self.__history = []
 
+    def updateUsername(self, username):
+        self.__username = username
+
+    def updatePassword(self, password):
+        self.__password = password
+
+    def updateHost(self, host):
+        self.__host = host
+
+    def updateDatabase(self, database):
+        self.__database = database
+
+    def resetHistory(self):
+        self.__history = []
+
     def execQuery(self, query):
         data = {'query' : query, "username" : self.__username, "password" : self.__password, "host": self.__host, "database" : self.__database}
         # headers = {'token' : self.__header}

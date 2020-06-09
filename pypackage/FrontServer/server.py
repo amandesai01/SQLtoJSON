@@ -17,6 +17,21 @@ class newConnForm(FlaskForm):
     database = StringField()
     connect = SubmitField('Connect')
 
+@app.route('/new')
+def new():
+    form = newConnForm()
+    if form.is_submitted():
+        backupS2JInstance =pickle.dumps(s2jObj)
+        s2jObj.updateHost(form.host.data)
+        s2jObj.updateUsername(form.username.data)
+        s2jObj.updatePassword(form.password.data)
+        s2jObj.updateDatabase(form.database.data)
+        if s2jObj.checkConnection():
+            return render_template('index.html')
+        else:
+            return render_template('newconnection.html', error=True)
+    return render_template('newconnection.html', error=False)
+
 @app.route('/querytab', methods=["POST", "GET"])
 def querytab():
     form = queryForm()

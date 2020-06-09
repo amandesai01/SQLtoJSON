@@ -29,6 +29,8 @@ def new():
         if s2jObj.checkConnection():
             return render_template('index.html')
         else:
+            #restoring old version
+            s2jObj = pickle.loads(backupS2JInstance)
             return render_template('newconnection.html', error=True)
     return render_template('newconnection.html', error=False)
 

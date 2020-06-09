@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import pickle
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, PasswordField
 
 app = Flask(__name__)
 app.secret_key = "KKKKEEEEYYY"
@@ -9,6 +9,13 @@ app.secret_key = "KKKKEEEEYYY"
 class queryForm(FlaskForm):
     Query = StringField()
     Submit = SubmitField('Run')
+
+class newConnForm(FlaskForm):
+    host = StringField()
+    username = StringField()
+    password = PasswordField()
+    database = StringField()
+    connect = SubmitField('Connect')
 
 @app.route('/querytab', methods=["POST", "GET"])
 def querytab():

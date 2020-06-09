@@ -11,10 +11,14 @@
         <br><br><br><br><br><br><br>
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-              
+              {% if error %}
+              <div class="alert alert-danger" role="alert">
+                Error Connecting Database.
+              </div>
+              {% endif %}
               <center>
               <h1 class="display-4">Create Connection</h1>
-              <form method="POST" action="{{ url_for( '' ) }}">
+              <form method="POST" action="{{ url_for( 'new' ) }}">
                 {{ form.hidden_tag() }}
                 {{ form.csrf_token }}
                 <div class="form-group">

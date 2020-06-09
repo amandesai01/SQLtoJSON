@@ -44,3 +44,15 @@ def exec_query(quer, database, host, user, password):
                 cursor.close()
                 connection.close()
     return maindata
+
+def checkConnection(database, host, user, password):
+    connection = None
+    try:
+        connection = mysql.connector.connect(host=host,database=database,user=user,password=password, use_pure = False)
+        return True
+    except:
+        return False
+    finally:
+        if connection:
+            if connection.is_connected():
+                connection.close()

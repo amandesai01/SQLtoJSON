@@ -40,6 +40,14 @@ class s2j:
         # update_pickle(self)
         return rawres
     
+    def checkConnection(self):
+       data = {"username" : self.__username, "password" : self.__password, "host": self.__host, "database" : self.__database} 
+       rawres = requests.post("http://127.0.0.1:4909/check", json = data).json()
+       if rawres.get('status') == "failure":
+           return False
+       else:
+           return True
+    
     def get_history(self):
         return self.__history
 

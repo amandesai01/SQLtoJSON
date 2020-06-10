@@ -33,7 +33,6 @@ s2j.start_lookup_server(db)
 
 <h3>Screenshots of Web Interfaces</h3>
 <hr>
-<img src = "Screenshots/ss1.jpeg">
 <img src = "Screenshots/ss2.jpeg">
 <img src = "Screenshots/ss3.jpeg">
 <img src = "Screenshots/ss4.jpeg">

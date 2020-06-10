@@ -18,7 +18,7 @@ def execQuery():
     except Exception as e:
         return jsonify({ "status" : "failure", "error_message" : str(e) })
 
-@app.route('/check')
+@app.route('/check', methods = ["POST", "GET"])
 def check():
     data = request.get_json()
     database = data.get('database')

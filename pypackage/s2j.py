@@ -57,8 +57,14 @@ class s2j:
     
     def checkConnection(self):
        data = {"username" : self.__username, "password" : self.__password, "host": self.__host, "database" : self.__database} 
-       rawres = requests.post("http://127.0.0.1:4909/check", json = data).json()
-       if rawres.get('status') == "failure":
+       urawres = requests.post("http://127.0.0.1:4909/check", json = data)
+       rawres = {}
+       try:
+           rawres = urawres.json()
+       except Exception as e:
+            print(e)
+       print(rawres)
+       if rawres.get('status') and rawres.get('status') == "failure":
            return False
        else:
            return True

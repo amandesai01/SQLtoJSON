@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 import pickle
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
@@ -17,22 +17,23 @@ class newConnForm(FlaskForm):
     database = StringField()
     connect = SubmitField('Connect')
 
-@app.route('/new')
+@app.route('/new', methods = ['GET', 'POST'])
 def new():
     form = newConnForm()
     if form.is_submitted():
-        backupS2JInstance =pickle.dumps(s2jObj)
+        # backupS2JInstance =pickle.dumps(s2jObj)
         s2jObj.updateHost(form.host.data)
         s2jObj.updateUsername(form.username.data)
         s2jObj.updatePassword(form.password.data)
         s2jObj.updateDatabase(form.database.data)
+        s2jObj.resetHistory()
         if s2jObj.checkConnection():
-            return render_template('index.html')
+            return redirect(url_for('index'))
         else:
             #restoring old version
-            s2jObj = pickle.loads(backupS2JInstance)
-            return render_template('newconnection.html', error=True)
-    return render_template('newconnection.html', error=False)
+            # s2jObj = pickle.loads(backupS2JInstance)
+            return render_template('newconnection.html', error=True, form=form)
+    return render_template('newconnection.html', error=False, form=form)
 
 @app.route('/querytab', methods=["POST", "GET"])
 def querytab():

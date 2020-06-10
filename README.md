@@ -14,11 +14,12 @@ Best part is you get an easy to use web interface where you can see your "in-cod
 Wanna change DB connection? Again, this package has got you covered. 
 
 <h2> Usage </h2>
+
 ```Python
 from pypackage import s2j
 
-db = s2j.s2j("localhost", "root", "password", "database") 
 # This line connnects you to your database. All exceptions self handled. ;)
+db = s2j.s2j("localhost", "root", "password", "database") 
 
 # Now one liners for your queries!!!!!!
 response = db.execQuery("SELECT * FROM users;")
@@ -27,4 +28,4 @@ response = db.execQuery("SELECT * FROM users;")
 print(response['data'])
 ```
 
-<h1>Screenshots of Web Interfaces</h1>
+<h3>Screenshots of Web Interfaces</h3>

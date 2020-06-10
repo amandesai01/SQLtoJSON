@@ -26,6 +26,14 @@ response = db.execQuery("SELECT * FROM users;")
 
 # You get an array in data field containing data as indivisual dictionary objects, key being column name.
 print(response['data'])
+
+# Use this method to fireup Web Interface. And the server will be initiated on PORT 4001
+s2j.start_lookup_server(db)
 ```
 
 <h3>Screenshots of Web Interfaces</h3>
+<hr>
+<img src = "Screenshots/ss1.jpeg">
+<img src = "Screenshots/ss2.jpeg">
+<img src = "Screenshots/ss3.jpeg">
+<img src = "Screenshots/ss4.jpeg">

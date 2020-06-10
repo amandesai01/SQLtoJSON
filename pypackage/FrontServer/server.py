@@ -17,7 +17,7 @@ class newConnForm(FlaskForm):
     database = StringField()
     connect = SubmitField('Connect')
 
-@app.route('/new')
+@app.route('/new', methods = ['POST', 'GET'])
 def new():
     form = newConnForm()
     if form.is_submitted():
@@ -31,8 +31,8 @@ def new():
         else:
             #restoring old version
             s2jObj = pickle.loads(backupS2JInstance)
-            return render_template('newconnection.html', error=True)
-    return render_template('newconnection.html', error=False)
+            return render_template('newconnection.html', form = form, error=True)
+    return render_template('newconnection.html', form = form, error=False)
 
 @app.route('/querytab', methods=["POST", "GET"])
 def querytab():
